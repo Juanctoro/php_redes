@@ -1,7 +1,4 @@
 <?php
-// welcome.php
-
-// Primero, se detecta si existen datos enviados por GET o POST
 if ($_SERVER["REQUEST_METHOD"] === "GET" && !empty($_GET)) {
     $nombre   = isset($_GET["nombre"]) ? $_GET["nombre"] : "";
     $username = isset($_GET["username"]) ? $_GET["username"] : "";
@@ -11,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !empty($_GET)) {
     $username = isset($_POST["username"]) ? $_POST["username"] : "";
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
 } else {
-    // Si no se envían datos, se busca la cookie
     if (isset($_COOKIE["user_data"])) {
         $data = json_decode($_COOKIE["user_data"], true);
         $nombre = isset($data["nombre"]) ? $data["nombre"] : "";
@@ -24,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && !empty($_GET)) {
     }
 }
 
-// Siempre se guarda la cookie con los valores actuales
 $cookie_value = json_encode([
   "nombre"   => $nombre,
   "username" => $username,
